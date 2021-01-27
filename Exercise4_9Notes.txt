@@ -1,0 +1,11 @@
+file_in_name = input("input file:")
+file_out_name = input("output file:")
+
+
+with open(file_in_name, "r") as file_in, open(file_out_name, "w") as file_out:
+	line_number = 1
+	line = file_in.read.line()
+	while line:
+		file_out.write(f"{line_number:>4}> {line}")
+		line_number += 1
+		line = file_in.readline()
