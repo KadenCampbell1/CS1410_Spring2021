@@ -2,17 +2,17 @@ import sys
 from time import perf_counter
 
 cache = {(0, 0): 0}
-cache_hit = [0]
-function_calls = [0]
+cache_hit = 0
+function_calls = 0
 
 
 def weight_on(r, c):
-    function_calls[0] = int(function_calls[0] + 1)
-    print(f"function calls: {function_calls[0]}")
     value = None
+    global function_calls
+    function_calls += 1
     if (r, c) in cache:
-        cache_hit[0] = int(cache_hit[0] + 1)
-        print(int(cache_hit[0]))
+        global cache_hit
+        cache_hit += 1
         return cache[(r, c)]
     else:
         if r == 0 and c == 0:
@@ -33,8 +33,17 @@ def weight_on(r, c):
 
 def main():
     cache.clear()
-    print(weight_on(6, 6))
-    print(cache)
+    value = 7  # change 7 to sys.arg
+    lyst = []
+    for i in range(value):
+        lyst.clear()
+        for x in range(0, i + 1):
+            lyst.append(weight_on(i, x))
+        print(f"{str(lyst)[1:-1]}")
+    time = None
+    print(f"\nElapsed time: {time}\n"
+          f"Number of function calls: {function_calls}\n"
+          f"Number of cache calls: {cache_hit}")
 
 
 if __name__ == "__main__":
