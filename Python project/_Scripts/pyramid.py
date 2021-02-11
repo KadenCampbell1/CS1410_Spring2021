@@ -20,15 +20,15 @@ def weight_on(r, c):
             return 0
         if c == 0:
             value = float((weight_on(r - 1, c) + 200) / 2)
-            cache[(r, c)] = round(value, 2)
+            cache[(r, c)] = value
         if c == r:
             value = float((weight_on(r - 1, c - 1) + 200) / 2)
-            cache[(r, c)] = round(value, 2)
+            cache[(r, c)] = value
         if c != 0 and c != r:
             value = float(((weight_on(r - 1, c) + 200) / 2) + ((weight_on(r - 1, c - 1) + 200) / 2))
-            cache[(r, c)] = round(value, 2)
-        cache[(r, c)] = round(value, 2)
-    return round(value, 2)
+            cache[(r, c)] = value
+        cache[(r, c)] = value
+    return value
 
 
 def main():
@@ -39,8 +39,8 @@ def main():
     for i in range(int(value)):
         lyst.clear()
         for x in range(0, i + 1):
-            lyst.append(weight_on(i, x))
-        print(f"{str(lyst)[1:-1]}")
+            lyst.append("{:.2f}".format(weight_on(i, x)))
+        print(f"{str(lyst)[1:-1]}".replace("'", ""))
 
     end = perf_counter()
     time = end - start
