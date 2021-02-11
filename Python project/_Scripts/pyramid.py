@@ -35,12 +35,10 @@ def main():
     cache.clear()
     value = sys.argv[1]  # _Scripts\pyramid.py <number> "this is how to use value"
     start = perf_counter()
-    lyst = []
     for i in range(int(value)):
-        lyst.clear()
         for x in range(0, i + 1):
-            lyst.append("{:.2f}".format(weight_on(i, x)))
-        print(f"{str(lyst)[1:-1]}".replace("'", "").replace(",", ""))
+            print(f"{weight_on(i, x):0.2f} ", end="")
+        print()
 
     end = perf_counter()
     time = end - start
