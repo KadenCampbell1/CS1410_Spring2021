@@ -40,7 +40,7 @@ def main():
         lyst.clear()
         for x in range(0, i + 1):
             lyst.append("{:.2f}".format(weight_on(i, x)))
-        print(f"{str(lyst)[1:-1]}".replace("'", ""))
+        print(f"{str(lyst)[1:-1]}".replace("'", "").replace(",", ""))
 
     end = perf_counter()
     time = end - start
