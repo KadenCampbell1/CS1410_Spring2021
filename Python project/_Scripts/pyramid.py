@@ -33,15 +33,18 @@ def weight_on(r, c):
 
 def main():
     cache.clear()
-    value = 7  # change 7 to sys.arg
+    value = sys.argv[1]  # _Scripts\pyramid.py <number> "this is how to use value"
+    start = perf_counter()
     lyst = []
-    for i in range(value):
+    for i in range(int(value)):
         lyst.clear()
         for x in range(0, i + 1):
             lyst.append(weight_on(i, x))
         print(f"{str(lyst)[1:-1]}")
-    time = None
-    print(f"\nElapsed time: {time}\n"
+
+    end = perf_counter()
+    time = end - start
+    print(f"\nElapsed time: {time} seconds\n"
           f"Number of function calls: {function_calls}\n"
           f"Number of cache calls: {cache_hit}")
 
