@@ -14,9 +14,9 @@ class GuessingGame(EasyFrame):
     def __init__(self):
         """Sets up the window,widgets, and data."""
         EasyFrame.__init__(self, title="Guessing Game")
-        # self.lowerBound = 0
-        # self.upperBound = 100
-        # self.count = 0
+        self.lowerBound = 0
+        self.upperBound = 100
+        self.count = 0
         self.myNumber = (self.lowerBound + self.upperBound) // 2
         guess = "Is the number " + str(self.myNumber) + "?"
         self.myLabel = self.addLabel(text=guess,
@@ -37,19 +37,40 @@ class GuessingGame(EasyFrame):
 
     def goLarge(self):
         """Guess was too small, so move guess to the right of the number."""
-        # Write code here
+        self.count += 1
+        self.lowerBound = self.myNumber
+        self.myNumber = (self.lowerBound + self.upperBound) // 2
+        guess = "Is the number " + str(self.myNumber) + "?"
+        self.myLabel["text"] = guess
 
     def goSmall(self):
         """Guess was too large, so move guess to the left of the number."""
-        # Write code here
+        self.count += 1
+        self.upperBound = self.myNumber
+        self.myNumber = (self.lowerBound + self.upperBound) // 2
+        guess = "Is the number " + str(self.myNumber) + "?"
+        self.myLabel["text"] = guess
 
     def goCorrect(self):
         """Guess was too correct, so announce and wait."""
-        # Write code here
+        self.count += 1
+        self.small["state"] = 'disabled'
+        self.large["state"] = 'disabled'
+        self.correct["state"] = 'disabled'
+        self.myLabel["text"] = f"Your number was {self.myNumber}. It was guessed in {self.count} tries."
+
 
     def newGame(self):
         """Resets the GUI to its original state."""
-        # Write code here
+        self.count = 0
+        self.lowerBound = 0
+        self.upperBound = 100
+        self.myNumber = (self.lowerBound + self.upperBound) // 2
+        guess = "Is the number " + str(self.myNumber) + "?"
+        self.myLabel["text"] = guess
+        self.small["state"] = 'active'
+        self.large["state"] = 'active'
+        self.correct["state"] = 'active'
 
 
 def main():
